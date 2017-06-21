@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Facebook app</title>
+  </head>
+  <body ng-app='facebookApp'>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '315417058896237',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+
+      FB.getLoginStatus(function(response) {
+          //statusChangeCallback(response);
+          console.log(response);
+      });
+    };
+    function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    //statusChangeCallback(response);
+    console.log(response);
+  });
+}
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+    <ng-view></ng-view>
+    <script src="src/angular1.6.4.js"></script>
+    <script src="src/angular-route1.6.4.js"></script>
+    <!-- loading my app -->
+    <script src="app/app.js"></script>
+
+    <!-- loading my controllers -->
+    <script src="app/controllers/login.controller.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+
+  </body>
+</html>
